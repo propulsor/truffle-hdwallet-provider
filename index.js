@@ -115,10 +115,10 @@ function HDWalletProvider(
     : this.engine.addProvider(singletonNonceSubProvider);
 
 
-// subscriptionProvider.on('data', (err, notification) => {
-//     this.engine.emit('data', err, notification)
-//   })
   this.engine.addProvider(new FiltersSubprovider());
+  this.engine.addProvider(this.subscriptionProvider);
+
+
   if (typeof provider === 'string') {
     this.engine.addProvider( new WebsocketProvider({rpcUrl:provider}));
   } else {
