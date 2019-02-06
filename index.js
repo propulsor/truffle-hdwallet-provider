@@ -119,16 +119,8 @@ function HDWalletProvider(
 //     this.engine.emit('data', err, notification)
 //   })
   this.engine.addProvider(new FiltersSubprovider());
-
-  this.engine.addProvider(this.subscriptionProvider);
-
-  if (typeof provider === "string") {
-    this.engine.addProvider(
-      // new ProviderSubprovider(
-      //   new Web3.providers.WebsocketProvider(provider, { keepAlive: false })
-      // )
-      new WebsocketProvider({rpcUrl:provider})
-    );
+  if (typeof provider === 'string') {
+    this.engine.addProvider(new ProviderSubProvider(new Web3.providers.WebsocketProvider(provider)));
   } else {
     this.engine.addProvider(new ProviderSubprovider(provider));
   }
