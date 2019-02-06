@@ -120,7 +120,7 @@ function HDWalletProvider(
 //   })
   this.engine.addProvider(new FiltersSubprovider());
   if (typeof provider === 'string') {
-    this.engine.addProvider(new ProviderSubProvider(new Web3.providers.WebsocketProvider(provider)));
+    this.engine.addProvider( new WebsocketProvider({rpcUrl:provider}));
   } else {
     this.engine.addProvider(new ProviderSubprovider(provider));
   }
